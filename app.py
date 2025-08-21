@@ -12,48 +12,13 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- Custom CSS for Styling ---
+# --- Custom CSS ---
 def local_css(file_name):
+    """Function to load a local CSS file."""
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# We will create this style.css file in the next step
-# For now, let's inject CSS directly for simplicity
-st.markdown("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
-
-html, body, [class*="st-"] {
-    font-family: 'MedievalSharp', cursive;
-}
-.st-emotion-cache-1y4p8pa {
-    background-color: #1a2a3a; /* Dark blue-gray background */
-}
-.st-emotion-cache-16txtl3 {
-    padding: 2rem;
-}
-.st-emotion-cache-10trblm {
-    color: #f0f2f6; /* Lighter text color */
-}
-div[data-testid="stMetric"] {
-    background-color: #334155;
-    border-radius: 10px;
-    padding: 15px;
-}
-.stButton>button {
-    border: 2px solid #f0f2f6;
-    border-radius: 10px;
-    color: #f0f2f6;
-    background-color: transparent;
-    transition: all 0.2s ease-in-out;
-}
-.stButton>button:hover {
-    border-color: #facc15; /* Gold color on hover */
-    color: #facc15;
-}
-</style>
-""", unsafe_allow_html=True)
-
+local_css("style.css")
 
 # --- Game Parameters ---
 BANDITS_CONFIG = [
@@ -85,6 +50,7 @@ if st.button("🔄 Start New Game"):
 left_pane, right_pane = st.columns(2, gap="large")
 
 with left_pane:
+    # This whole section remains unchanged
     st.header("The Five Chests of Mystery")
     
     score_cols = st.columns(2)
@@ -122,10 +88,27 @@ with left_pane:
     for msg in reversed(st.session_state.game_log):
         log_container.write(msg)
 
+
 with right_pane:
     st.header("Bayesian Belief Chart")
-    st.write("Your belief about each chest's true payout rate, updated in real-time.")
     
+    # --- NEW: EXPLAINER SECTION ---
+    with st.expander("What does this chart mean? 🤔"):
+        st.markdown("""
+        This chart visualizes our **belief** about the true payout probability of each chest. This is a core concept in **Bayesian statistics**.
+
+        - **X-axis**: The possible true payout rates (from 0% to 100%).
+        - **Y-axis**: How likely we think each rate is. A higher peak means more certainty.
+        - **Each Line**: Represents one chest.
+
+        Initially, all lines are flat, meaning any payout rate is equally possible (total uncertainty). As you open a chest:
+        - A **win** shifts the curve to the right (higher probability).
+        - A **loss** shifts it to the left (lower probability).
+        
+        The more data you collect on a chest, the narrower and more confident its curve becomes!
+        """)
+    
+    # --- Chart Generation (Unchanged) ---
     chart_data = []
     for bandit in st.session_state.bandits:
         x, y, name = bandit.get_pdf_data()
