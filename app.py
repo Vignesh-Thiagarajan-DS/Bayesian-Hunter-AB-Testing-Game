@@ -33,7 +33,7 @@ if 'bandits' not in st.session_state:
     st.session_state.game_log = [] # To store messages for the player
 
 # --- Page Title and Introduction ---
-st.title("🎯 Bandit Hunter")
+st.title("Bandit Hunter")
 st.markdown(f"""
 Welcome to Bandit Hunter! You have **{TOTAL_KEYS} keys** to open five treasure chests. 
 Each chest has a different, secret probability of containing treasure. Your goal is to maximize your winnings.
@@ -62,20 +62,75 @@ with left_pane:
     score_cols[0].metric("🔑 Keys Remaining", st.session_state.keys_remaining)
     score_cols[1].metric("💰 Total Treasure", st.session_state.total_treasure)
 
-    st.write("---") # Divider
+    st.write("---")  # Divider
 
-    # We will add the chest buttons here in the next step.
-    st.info("The chest buttons will appear here.")
+    # --- Create the buttons for each bandit ---
+    # Use columns to lay them out neatly
+    button_cols = st.columns(len(st.session_state.bandits))
+
+    for i, bandit in enumerate(st.session_state.bandits):
+        with button_cols[i]:
+            # Check if we have keys left before showing the button
+            if st.session_state.keys_remaining > 0:
+                if st.button(f"Open {bandit.name}", key=f"bandit_{i}", use_container_width=True):
+                    # --- This is the core game logic block ---
+
+                    # 1. Use a key
+                    st.session_state.keys_remaining -= 1
+
+                    # 2. Pull the bandit's arm (open the chest)
+                    result = bandit.pull()
+
+                    # 3. Update the bandit's belief (alpha and beta)
+                    bandit.update(result)
+
+                    # 4. Update the total treasure
+                    if result == 1:
+                        st.session_state.total_treasure += 1
+                        log_message = f"Success! Found treasure in the {bandit.name}."
+                    else:
+                        log_message = f"Empty. No treasure in the {bandit.name}."
+
+                    # 5. Add to the game log
+                    st.session_state.game_log.append(log_message)
+
+            else:
+                # Show a disabled button if no keys are left
+                st.button(f"Open {bandit.name}", key=f"bandit_{i}", use_container_width=True, disabled=True)
     
-    # Display the game log
+    # --- Game Over Message ---
+    if st.session_state.keys_remaining <= 0:
+        st.warning(f"**Game Over!** You found a total of {st.session_state.total_treasure} treasures.", icon="🎉")
+
+
+    # --- Display the game log ---
     st.write("📜 **Game Log**")
     log_container = st.container(height=200)
     for msg in reversed(st.session_state.game_log):
         log_container.write(msg)
 
-
 with right_pane:
     st.header("Your Bayesian Beliefs")
-    st.write("The probability distributions will appear here.")
-    # We will add the chart here in the next step.
-    st.info("The belief chart will appear here.")
+    st.write("This chart shows the probability distribution of each chest's payout rate based on your results so far.")
+
+    # Prepare data for Altair chart
+    chart_data = []
+    for bandit in st.session_state.bandits:
+        x, y, name = bandit.get_pdf_data()
+        # Associate the data with the bandit's name
+        for x_val, y_val in zip(x, y):
+            chart_data.append({"x": x_val, "pdf": y_val, "Chest": name})
+
+    df = pd.DataFrame(chart_data)
+
+    # Create the Altair chart
+    chart = alt.Chart(df).mark_line().encode(
+        x=alt.X('x', title='Hidden Payout Probability'),
+        y=alt.Y('pdf', title='Probability Density'),
+        color=alt.Color('Chest', title='Treasure Chests'),
+        tooltip=['Chest', 'x', 'pdf']
+    ).properties(
+        title="Belief Distributions for Chest Payout Rates"
+    ).interactive()
+
+    st.altair_chart(chart, use_container_width=True)
