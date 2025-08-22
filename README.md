@@ -1,20 +1,20 @@
 <h1 align="center">Bandit Hunter: A Bayesian Adventure</h1>
 
 <p align="center">
-  <img src="assets/banner.jpg" alt="Bandit Hunter Banner">
-</p>
-
-> An interactive web application that turns a classic data science problem the **Multi-Armed Bandit** into an engaging game. This project is designed to provide a hands-on, visual understanding of Bayesian inference, A/B testing strategies, and the explore-exploit tradeoff.
->
-<p align="center">
   <a href="https://medium.com/@Vignesh-Thiagarajan-DS/beyond-a-b-testing-understanding-multi-armed-bandits-with-an-interactive-game-461bd81e9241" target="_blank">
-    <img src="https://img.shields.io/badge/Read_The_Full_Write--up-Medium-black?style=for-the-badge&logo=medium" alt="Read on Medium">
+    <img src="https://img.shields.io/badge/Read_The_Full_Write--up-Medium-black?style=flat&logo=medium" alt="Read on Medium">
   </a>
   &nbsp;&nbsp;
   <a href="https://vignesh-bayesian-hunter-ab-testing-game.streamlit.app/" target="_blank">
     <img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Open in Streamlit">
   </a>
 </p>
+
+<p align="center">
+  <img src="assets/banner.jpg" alt="Bandit Hunter Banner">
+</p>
+
+> An interactive web application that turns a classic data science problem—the **Multi-Armed Bandit**—into an engaging game. This project is designed to provide a hands-on, visual understanding of Bayesian inference, A/B testing strategies, and the explore-exploit tradeoff.
 
 <br>
 
@@ -27,22 +27,22 @@
 
 ---
 
-<h2 id="live-demo">Live Demo</h2>
+<h2 id="live-demo">📽Live Demo</h2>
+
+<h3 align="center"><a href="https://vignesh-bayesian-hunter-ab-testing-game.streamlit.app/" target="_blank">➡️ Click Here to Play the Live Demo! ⬅️</a></h3>
 
 <p align="center">
-  <br><br>
-  ![Bandit Hunter Gameplay Demo](./assets/gameplay-demo.gif) 
+  <img src="assets/gameplay-demo.gif" alt="Demo GIF of Bandit Hunter Gameplay" width="800">
 </p>
 
 ---
-
 <h2 id="key-features">Key Features</h2>
 
 * **Interactive Gameplay:** A simple and intuitive game where your choices directly impact the statistical model.
 * **Real-Time Bayesian Visualization:** Watch the belief distributions for each chest update in real-time with every click.
 * **Multiple Chart Types:** Switch between "Belief Curves" (Beta PDF) and "Best Guess" (Posterior Mean) to see the data from different perspectives.
 * **Algorithmic Hints:** Get advice from two classic bandit algorithms—**Upper Confidence Bound** and **Epsilon-Greedy**—to compare your strategy against theirs.
-* **In-Depth Explanations:** A dedicated pane explains the core mathematical concepts ($ \text{Beta Distribution}, \text{UCB Formula}$, etc.) with live stats from your game session.
+* **In-Depth Explanations:** A dedicated pane explains the core mathematical concepts with live stats from your game session.
 
 ---
 
@@ -55,7 +55,11 @@
 <h3 align="center">Bayesian Inference & The Beta-Bernoulli Model</h3>
 
 > The game uses a **Bayesian approach** to learn about the chests. Instead of just calculating a simple win rate, we maintain a **probability distribution of our belief** for each chest's true payout rate. We start with an uncertain belief, and with each click, we update that belief using the new evidence. This is Bayes' Theorem in action:
-> $$ P(\theta | D) = \frac{P(D | \theta) \cdot P(\theta)}{P(D)} $$
+>
+> $$
+> P(\theta | D) = \frac{P(D | \theta) \cdot P(\theta)}{P(D)}
+> $$
+>
 > Where $ \theta $ is our belief about the payout rate and $ D $ is the new data (evidence).
 
 <h3 align="center">The Explore-Exploit Tradeoff</h3>
