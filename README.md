@@ -54,6 +54,7 @@
 > The game uses a **Bayesian approach** to learn about the chests. Instead of just calculating a simple win rate, we maintain a **probability distribution of our belief** for each chest's true payout rate. We start with an uncertain belief, and with each click, we update that belief using the new evidence. This is Bayes' Theorem in action:
 
 > $$ P(\theta | D) = \frac{P(D | \theta) \cdot P(\theta)}{P(D)} $$
+> 
 > Where θ is our belief about the payout rate and D is the new data (evidence).
 
 <h3 align="center">The Explore-Exploit Tradeoff</h3>
