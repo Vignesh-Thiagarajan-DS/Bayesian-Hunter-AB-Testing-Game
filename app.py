@@ -93,7 +93,7 @@ def play_game():
     st.markdown(
         f'<div class="player-name">'
         f'<img src="data:image/png;base64,{icon_base64}">'
-        f'<div class="player-name-text">{st.session_state.player_name}<br><span style="font-size: 0.8em; color: #facc15;">Level {player_level}</span></div>'
+        f'<div class="player-name-text">{st.session_state.player_name}<br><span class="player-level-text">Level {player_level}</span></div>'
         f'</div>', unsafe_allow_html=True
     )
 
@@ -124,7 +124,7 @@ def play_game():
             attempts_used = TOTAL_KEYS - st.session_state.keys_remaining
             
             # Display the new text and variable
-            st.markdown(f'<p style="font-size: 1.5em;">🔑 Choose your treasure wisely: </p>', unsafe_allow_html=True)
+            st.markdown(f'<p style="font-size: 1.5em;">🔑 Choose wisely: </p>', unsafe_allow_html=True)
             
             # Update the progress bar to reflect attempts used
             attempts_percent = 0
@@ -184,7 +184,7 @@ def play_game():
             ).properties(title="Live Belief Update for Each Chest").configure_axis(
                 labelFontSize=14, titleFontSize=18
             ).configure_title(fontSize=22).configure_legend(titleFontSize=16, labelFontSize=14)
-            st.altair_chart(pdf_chart, use_container_width=True)
+            st.altair_chart(pdf_chart, use_container_width=True, theme="streamlit")
 
         with tab2:
             chart_data_mean = [{"c": b.name, "bg": b.get_mean()} for b in st.session_state.bandits]
@@ -197,13 +197,13 @@ def play_game():
                 tooltip=[alt.Tooltip('c'), alt.Tooltip('bg', title="Best Guess", format='.1%')]
             )
             # NEW: Text labels on the bars to highlight probabilities
-            text = bars.mark_text(align='center', baseline='bottom', dy=-5, color='white', size=16).encode(
+            text = bars.mark_text(align='center', baseline='bottom', dy=-5, size=16).encode(
                 text=alt.Text('bg:Q', format='.1%')
             )
             bar_chart = (bars + text).properties(title="Current Best Guess for Each Chest").configure_axis(
                 labelFontSize=14, titleFontSize=18
             ).configure_title(fontSize=22)
-            st.altair_chart(bar_chart, use_container_width=True)
+            st.altair_chart(bar_chart, use_container_width=True, theme="streamlit")
         with tab3:
             total_pulls = TOTAL_KEYS - st.session_state.keys_remaining
             if total_pulls > 0:
@@ -285,8 +285,10 @@ def play_game():
         with stat_col3:
             mean_payout = selected_bandit.get_mean()
             st.markdown(f"""
-            <p style="font-size: 1.3em; color: #facc15;">Current Best Guess</p>
-            <p style="font-size: 2.5em; font-weight: bold; color: #facc15;">{mean_payout:.2%}</p>
+            <div class="highlight-metric">
+                <p style="font-size: 1.3em;">Current Best Guess</p>
+                <p style="font-size: 2.5em; font-weight: bold;">{mean_payout:.2%}</p>
+            </div>
             """, unsafe_allow_html=True)
 
 
@@ -298,7 +300,21 @@ if 'player_name' not in st.session_state:
     # UPDATED: Side-by-side layout for title and name input
     title_col, input_col = st.columns([0.7, 0.3])
     with title_col:
-        st.title("Welcome to 🎯 Bandit Hunter!")
+        st.title("Welcome to Bandit Hunter!")
+        st.markdown("""
+            <div style="display: flex; align-items: center; gap: 10px; margin-top: -15px;">
+                <span style="font-size: 1.1em;">By Vignesh Thiagarajan</span>
+                <a href="https://www.linkedin.com/in/vignesh-thiagarajan-ds/" target="_blank">
+                    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+                </a>
+                <a href="https://github.com/Vignesh-Thiagarajan-DS" target="_blank">
+                    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+                </a>
+                <a href="https://medium.com/@vignesh_thiagarajan" target="_blank">
+                    <img src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" alt="Medium"/>
+                </a>
+            </div>
+        """, unsafe_allow_html=True)
     with input_col:
         # UPDATED: Using st.markdown for a custom, larger label
         st.markdown('<p class="welcome-input-label">Enter your player name to begin:</p>', unsafe_allow_html=True)

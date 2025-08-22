@@ -39,6 +39,12 @@
 
 <h2 id="core-concepts">Core Concepts Demonstrated</h2>
 
+<h3 align="center">A/B Testing Framework</h3>
+
+> The concept is simple and powerful: you create two or more versions of something (an ad, a webpage, a button), show them to different segments of your audience, and let the data tell you which one performs better. It’s a controlled experiment that takes the guesswork out of decision-making.
+
+> In a traditional A/B test, you must commit to a fixed “exploration” period. You might decide to show Version A to some % of your users and Version B to the rest until you reach statistical significance.
+
 <h3 align="center">The Multi-Armed Bandit Problem</h3>
 
 > This is a classic thought experiment where a gambler must choose which slot machine ("one-armed bandit") to play, each with a different hidden payout rate. The goal is to maximize winnings by quickly identifying the best machine. This serves as a powerful analogy for many real-world problems like A/B testing, clinical trials, and resource allocation.
@@ -46,12 +52,9 @@
 <h3 align="center">Bayesian Inference & The Beta-Bernoulli Model</h3>
 
 > The game uses a **Bayesian approach** to learn about the chests. Instead of just calculating a simple win rate, we maintain a **probability distribution of our belief** for each chest's true payout rate. We start with an uncertain belief, and with each click, we update that belief using the new evidence. This is Bayes' Theorem in action:
->
-> $$
-> P(\theta | D) = \frac{P(D | \theta) \cdot P(\theta)}{P(D)}
-> $$
->
-> Where $ \theta $ is our belief about the payout rate and $ D $ is the new data (evidence).
+
+> $$ P(\theta | D) = \frac{P(D | \theta) \cdot P(\theta)}{P(D)} $$
+> Where θ is our belief about the payout rate and D is the new data (evidence).
 
 <h3 align="center">The Explore-Exploit Tradeoff</h3>
 

@@ -1,20 +1,51 @@
-/* Using standard browser fonts */
-html, body, [class*="st-"], .st-emotion-cache-10trblm {
-    color: #f0f2f6;
-    font-size: 18px; 
+/* --- NEW: CSS Variables for Light & Dark Mode --- */
+:root {
+  /* Light Mode Colors */
+  --text-color: #0f172a;            /* Dark text */
+  --bg-color: #ffffff;              /* White background */
+  --secondary-bg-color: #f0f2f6;    /* Light gray background */
+  --tertiary-bg-color: #e2e8f0;     /* Lighter gray */
+  --primary-border-color: #94a3b8;  /* Medium gray border */
+  --secondary-border-color: #cbd5e1;/* Light gray border */
+  --accent-color: #f59e0b;           /* A richer yellow for light mode contrast */
+  --accent-color-light: #ffeb3b;     /* Lighter yellow for gradients */
+  --button-text-inverted: #0f172a;   /* Dark text for light buttons */
+  --muted-text-color: #475569;      /* Muted dark text */
 }
-.st-emotion-cache-1y4p8pa { background-color: #0f172a; }
+
+@media (prefers-color-scheme: dark) {
+  /* Dark Mode Colors */
+  :root {
+    --text-color: #f0f2f6;            /* Light text */
+    --bg-color: #0f172a;              /* Dark background */
+    --secondary-bg-color: #1e293b;    /* Darker gray */
+    --tertiary-bg-color: #334155;     /* Lighter dark gray */
+    --primary-border-color: #ffffff;  /* White border */
+    --secondary-border-color: #475569;/* Medium gray border */
+    --accent-color: #facc15;           /* Original gold/yellow */
+    --accent-color-light: #ffeb3b;     /* Lighter yellow for gradients */
+    --button-text-inverted: #0f172a;   /* Dark text for light buttons (no change needed) */
+    --muted-text-color: #cbd5e1;      /* Muted light text */
+  }
+}
+
+/* --- General Styling (using variables) --- */
+html, body, [class*="st-"], .st-emotion-cache-10trblm {
+    color: var(--text-color);
+    font-size: 18px;
+}
+.st-emotion-cache-1y4p8pa { background-color: var(--bg-color); }
 
 h1 { font-size: 2.8em !important; }
 h2 { font-size: 2.2em !important; }
 h3 { font-size: 1.6em !important; }
 
-/* --- UPDATED: Professional "Player Nameplate" design --- */
+/* --- Player Nameplate --- */
 .player-name {
     position: absolute; top: 20px; right: 20px;
-    background-image: linear-gradient(to right, #1e293b, #334155);
+    background-image: linear-gradient(to right, var(--secondary-bg-color), var(--tertiary-bg-color));
     padding: 10px 20px;
-    border-radius: 15px; border: 2px solid #475569;
+    border-radius: 15px; border: 2px solid var(--secondary-border-color);
     font-size: 1.1em;
     display: grid;
     grid-template-columns: auto 1fr;
@@ -23,22 +54,22 @@ h3 { font-size: 1.6em !important; }
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 .player-name img {
-    height: 50px; /* Increased size */
-    width: 50px;  /* Increased size */
-    border-radius: 50%; /* Circular icon */
-    border: 2px solid #facc15;
+    height: 50px; width: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
 }
-.player-name-text {
-    line-height: 1.2;
+.player-name .player-level-text {
+    font-size: 0.8em;
+    color: var(--accent-color);
 }
 
-/* --- UPDATED: White borders and increased height for the two main panes --- */
+/* --- Main Panes --- */
 div[data-testid="column"] > div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlockBorderWrapper"] > div[data-testid="stVerticalBlock"] > div.st-emotion-cache-1jicfl2 {
-    border: 3px solid white; border-radius: 20px; padding: 25px;
-    min-height: 850px; /* Increased length */
+    border: 3px solid var(--primary-border-color); border-radius: 20px; padding: 25px;
+    min-height: 850px;
 }
 
-/* Larger font for "Total Treasure" label */
+/* Metric styling */
 div[data-testid="stMetricLabel"] { font-size: 1.8em !important; }
 div[data-testid="stMetricValue"] { font-size: 2.5em; }
 
@@ -46,16 +77,16 @@ div[data-testid="stMetricValue"] { font-size: 2.5em; }
 div[data-baseweb="tabs"] > div:first-of-type { display: flex; width: 100%; }
 button[data-baseweb="tab"] { flex-grow: 1; font-size: 1.5em; }
 button[data-baseweb="tab"][aria-selected="true"] {
-    background-color: #1e293b; color: #facc15; border-bottom: 3px solid #facc15 !important;
+    background-color: var(--secondary-bg-color);
+    color: var(--accent-color);
+    border-bottom: 3px solid var(--accent-color) !important;
 }
 
-/* Banner container */
+/* Banner & Chest Image Containers */
 .banner-container {
     height: 300px; overflow: hidden; border-radius: 20px; margin-bottom: 20px;
 }
 .banner-container img { width: 100%; height: 100%; object-fit: cover; }
-
-/* CSS-based chest image container */
 .chest-image-container {
     width: 100%; height: 200px; background-size: contain;
     background-position: center; background-repeat: no-repeat;
@@ -63,35 +94,28 @@ button[data-baseweb="tab"][aria-selected="true"] {
 
 /* Button styling */
 .stButton>button {
-    border: 2px solid #f0f2f6; border-radius: 10px; transition: all 0.2s ease-in-out;
+    border: 2px solid var(--text-color); border-radius: 10px; transition: all 0.2s ease-in-out;
     min-height: 50px; font-size: 1.1em !important;
 }
-button[data-testid*="bandit_0"] { background-color: #A1662F !important; }
-button[data-testid*="bandit_1"] { background-color: #C0C0C0 !important; color: #0f172a !important; }
-button[data-testid*="bandit_2"] { background-color: #FFD700 !important; color: #0f172a !important; }
-.stButton>button:hover { border-color: #ffffff; transform: scale(1.05); }
+button[data-testid*="bandit_0"] { background-color: #A1662F !important; } /* Wooden chest color */
+button[data-testid*="bandit_1"] { background-color: #C0C0C0 !important; color: var(--button-text-inverted) !important; } /* Silver chest */
+button[data-testid*="bandit_2"] { background-color: #FFD700 !important; color: var(--button-text-inverted) !important; } /* Gold chest */
+.stButton>button:hover { border-color: var(--accent-color); transform: scale(1.05); }
 
 /* Progress bar styling */
-div[data-testid="stProgressBar"] > div { background-image: linear-gradient(to right, #facc15, #ffeb3b); }
+div[data-testid="stProgressBar"] > div {
+    background-image: linear-gradient(to right, var(--accent-color), var(--accent-color-light));
+}
 
 /* Notification text styling */
 div[data-testid="stAlert"] { font-size: 1.3em; text-align: center; }
-
-/* Math pane styling */
-.math-highlight { color: #facc15; font-size: 1.2em; font-weight: bold; }
 
 /* Custom class for the welcome screen's input label */
 .welcome-input-label {
     font-size: 1.3em !important;
     font-weight: bold;
-    color: #cbd5e1; 
-    padding-top: 10px; /* Helps with vertical alignment */
-}
-
-/* --- NEW: Style for the highlighted "Best Guess" metric --- */
-.highlight-metric div[data-testid="stMetricLabel"],
-.highlight-metric div[data-testid="stMetricValue"] {
-    color: #facc15 !important; /* Gold/Yellow color */
+    color: var(--muted-text-color);
+    padding-top: 10px;
 }
 
 /* Increases font size for input labels like "Choose a chest..." */
@@ -102,4 +126,9 @@ label[data-testid="stWidgetLabel"] {
 /* Increases font size for the tab labels */
 button[data-baseweb="tab"] {
     font-size: 1.5em !important;
+}
+
+/* Styling for metric highlighting */
+.highlight-metric p {
+    color: var(--accent-color) !important;
 }
