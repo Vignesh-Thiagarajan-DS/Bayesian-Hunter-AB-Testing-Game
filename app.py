@@ -170,7 +170,20 @@ def play_game():
                 df_temp = pd.DataFrame({'p': x, 'd': y, 'c': name})
                 chart_data_pdf.append(df_temp)
             df_pdf = pd.concat(chart_data_pdf)
-            pdf_chart = alt.Chart(df_pdf).mark_line(strokeWidth=4).encode(x=alt.X('p:Q', title='Hidden Payout Probability'), y=alt.Y('d:Q', title='Density of Belief'), color=alt.Color('c:N', title="Chests")).properties(title="Live Belief Update for Each Chest").configure_axis(labelFontSize=14, titleFontSize=18).configure_title(fontSize=18).configure_legend(titleFontSize=16, labelFontSize=14)
+# This is the updated code block
+            pdf_chart = alt.Chart(df_pdf).mark_line(strokeWidth=4).encode(
+                x=alt.X('p:Q', title='Hidden Payout Probability'),
+                y=alt.Y('d:Q', title='Density of Belief'),
+                color=alt.Color('c:N', title="Chests",
+                    # ADD THIS SCALE to define custom colors
+                    scale=alt.Scale(
+                        domain=['Golden Chest', 'Silver Chest', 'Wooden Chest'],
+                        range=[ "#824ADC",'#4FDB6D', '#DB4F89'] # Gold, Silver, Brown
+                    )
+                )
+            ).properties(title="Live Belief Update for Each Chest").configure_axis(
+                labelFontSize=14, titleFontSize=18
+            ).configure_title(fontSize=22).configure_legend(titleFontSize=16, labelFontSize=14)
             st.altair_chart(pdf_chart, use_container_width=True)
 
         with tab2:
