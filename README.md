@@ -21,10 +21,6 @@
   <a href="#tech-stack">Tech Stack</a>
 </h3>
 
----
-
-<h2 id="live-demo">Live Demo</h2>
-
 <h3 align="center"><a href="https://vignesh-bayesian-hunter-ab-testing-game.streamlit.app/" target="_blank">Click Here to Play the Actual Game!</a></h3>
 
 <p align="center">
