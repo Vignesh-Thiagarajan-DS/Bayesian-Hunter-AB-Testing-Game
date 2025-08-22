@@ -10,11 +10,7 @@
   </a>
 </p>
 
-<p align="center">
-  <img src="assets/banner.jpg" alt="Bandit Hunter Banner">
-</p>
-
-> An interactive web application that turns a classic data science problem—the **Multi-Armed Bandit**—into an engaging game. This project is designed to provide a hands-on, visual understanding of Bayesian inference, A/B testing strategies, and the explore-exploit tradeoff.
+> An interactive web application that turns a classic data science problem the **Multi-Armed Bandit** into an engaging game. This project is designed to provide a hands-on, visual understanding of Bayesian inference, A/B testing strategies, and the explore-exploit tradeoff.
 
 <br>
 
@@ -27,9 +23,9 @@
 
 ---
 
-<h2 id="live-demo">📽Live Demo</h2>
+<h2 id="live-demo">Live Demo</h2>
 
-<h3 align="center"><a href="https://vignesh-bayesian-hunter-ab-testing-game.streamlit.app/" target="_blank">➡️ Click Here to Play the Live Demo! ⬅️</a></h3>
+<h3 align="center"><a href="https://vignesh-bayesian-hunter-ab-testing-game.streamlit.app/" target="_blank">Click Here to Play the Actual Game!</a></h3>
 
 <p align="center">
   <img src="assets/gameplay-demo.gif" alt="Demo GIF of Bandit Hunter Gameplay" width="800">
