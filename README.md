@@ -32,7 +32,7 @@
 * **Interactive Gameplay:** A simple and intuitive game where your choices directly impact the statistical model.
 * **Real-Time Bayesian Visualization:** Watch the belief distributions for each chest update in real-time with every click.
 * **Multiple Chart Types:** Switch between "Belief Curves" (Beta PDF) and "Best Guess" (Posterior Mean) to see the data from different perspectives.
-* **Algorithmic Hints:** Get advice from two classic bandit algorithms—**Upper Confidence Bound** and **Epsilon-Greedy**—to compare your strategy against theirs.
+* **Algorithmic Hints:** Get advice from two classic bandit algorithms **Upper Confidence Bound** and **Epsilon-Greedy** to compare your strategy against theirs.
 * **In-Depth Explanations:** A dedicated pane explains the core mathematical concepts with live stats from your game session.
 
 ---
