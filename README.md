@@ -12,7 +12,11 @@
 
 > An interactive web application that turns a classic data science problem the **Multi-Armed Bandit** into an engaging game. This project is designed to provide a hands-on, visual understanding of Bayesian inference, A/B testing strategies, and the explore-exploit tradeoff.
 
-<br>
+<h3 align="center"><a href="https://vignesh-bayesian-hunter-ab-testing-game.streamlit.app/" target="_blank">Click Here to Play the Actual Game!</a></h3>
+
+<p align="center">
+  <img src="assets/gameplay-demo.gif" alt="Demo GIF of Bandit Hunter Gameplay" width="800">
+</p>
 
 <h3 align="center">
   <a href="#key-features">Key Features</a> •
@@ -21,13 +25,8 @@
   <a href="#tech-stack">Tech Stack</a>
 </h3>
 
-<h3 align="center"><a href="https://vignesh-bayesian-hunter-ab-testing-game.streamlit.app/" target="_blank">Click Here to Play the Actual Game!</a></h3>
-
-<p align="center">
-  <img src="assets/gameplay-demo.gif" alt="Demo GIF of Bandit Hunter Gameplay" width="800">
-</p>
-
 ---
+
 <h2 id="key-features">Key Features</h2>
 
 * **Interactive Gameplay:** A simple and intuitive game where your choices directly impact the statistical model.
