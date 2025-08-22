@@ -1,30 +1,105 @@
-@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
-
-html, body, [class*="st-"] {
-    font-family: 'MedievalSharp', cursive;
-}
-.st-emotion-cache-1y4p8pa {
-    background-color: #1a2a3a; /* Dark blue-gray background */
-}
-.st-emotion-cache-16txtl3 {
-    padding: 2rem;
-}
-.st-emotion-cache-10trblm {
-    color: #f0f2f6; /* Lighter text color */
-}
-div[data-testid="stMetric"] {
-    background-color: #334155;
-    border-radius: 10px;
-    padding: 15px;
-}
-.stButton>button {
-    border: 2px solid #f0f2f6;
-    border-radius: 10px;
+/* Using standard browser fonts */
+html, body, [class*="st-"], .st-emotion-cache-10trblm {
     color: #f0f2f6;
-    background-color: transparent;
-    transition: all 0.2s ease-in-out;
+    font-size: 18px; 
 }
-.stButton>button:hover {
-    border-color: #facc15; /* Gold color on hover */
-    color: #facc15;
+.st-emotion-cache-1y4p8pa { background-color: #0f172a; }
+
+h1 { font-size: 2.8em !important; }
+h2 { font-size: 2.2em !important; }
+h3 { font-size: 1.6em !important; }
+
+/* --- UPDATED: Professional "Player Nameplate" design --- */
+.player-name {
+    position: absolute; top: 20px; right: 20px;
+    background-image: linear-gradient(to right, #1e293b, #334155);
+    padding: 10px 20px;
+    border-radius: 15px; border: 2px solid #475569;
+    font-size: 1.1em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.player-name img {
+    height: 50px; /* Increased size */
+    width: 50px;  /* Increased size */
+    border-radius: 50%; /* Circular icon */
+    border: 2px solid #facc15;
+}
+.player-name-text {
+    line-height: 1.2;
+}
+
+/* --- UPDATED: White borders and increased height for the two main panes --- */
+div[data-testid="column"] > div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlockBorderWrapper"] > div[data-testid="stVerticalBlock"] > div.st-emotion-cache-1jicfl2 {
+    border: 3px solid white; border-radius: 20px; padding: 25px;
+    min-height: 850px; /* Increased length */
+}
+
+/* Larger font for "Total Treasure" label */
+div[data-testid="stMetricLabel"] { font-size: 1.8em !important; }
+div[data-testid="stMetricValue"] { font-size: 2.5em; }
+
+/* Tab Layout Styling */
+div[data-baseweb="tabs"] > div:first-of-type { display: flex; width: 100%; }
+button[data-baseweb="tab"] { flex-grow: 1; font-size: 1.5em; }
+button[data-baseweb="tab"][aria-selected="true"] {
+    background-color: #1e293b; color: #facc15; border-bottom: 3px solid #facc15 !important;
+}
+
+/* Banner container */
+.banner-container {
+    height: 300px; overflow: hidden; border-radius: 20px; margin-bottom: 20px;
+}
+.banner-container img { width: 100%; height: 100%; object-fit: cover; }
+
+/* CSS-based chest image container */
+.chest-image-container {
+    width: 100%; height: 200px; background-size: contain;
+    background-position: center; background-repeat: no-repeat;
+}
+
+/* Button styling */
+.stButton>button {
+    border: 2px solid #f0f2f6; border-radius: 10px; transition: all 0.2s ease-in-out;
+    min-height: 50px; font-size: 1.1em !important;
+}
+button[data-testid*="bandit_0"] { background-color: #A1662F !important; }
+button[data-testid*="bandit_1"] { background-color: #C0C0C0 !important; color: #0f172a !important; }
+button[data-testid*="bandit_2"] { background-color: #FFD700 !important; color: #0f172a !important; }
+.stButton>button:hover { border-color: #ffffff; transform: scale(1.05); }
+
+/* Progress bar styling */
+div[data-testid="stProgressBar"] > div { background-image: linear-gradient(to right, #facc15, #ffeb3b); }
+
+/* Notification text styling */
+div[data-testid="stAlert"] { font-size: 1.3em; text-align: center; }
+
+/* Math pane styling */
+.math-highlight { color: #facc15; font-size: 1.2em; font-weight: bold; }
+
+/* Custom class for the welcome screen's input label */
+.welcome-input-label {
+    font-size: 1.3em !important;
+    font-weight: bold;
+    color: #cbd5e1; 
+    padding-top: 10px; /* Helps with vertical alignment */
+}
+
+/* --- NEW: Style for the highlighted "Best Guess" metric --- */
+.highlight-metric div[data-testid="stMetricLabel"],
+.highlight-metric div[data-testid="stMetricValue"] {
+    color: #facc15 !important; /* Gold/Yellow color */
+}
+
+/* Increases font size for input labels like "Choose a chest..." */
+label[data-testid="stWidgetLabel"] {
+    font-size: 1.3em !important;
+}
+
+/* Increases font size for the tab labels */
+button[data-baseweb="tab"] {
+    font-size: 1.5em !important;
 }
