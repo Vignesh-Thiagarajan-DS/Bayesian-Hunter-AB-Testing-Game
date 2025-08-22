@@ -27,11 +27,11 @@
 
 ---
 
-<h2 id="live-demo">📽️ Live Demo</h2>
+<h2 id="live-demo">Live Demo</h2>
 
 <p align="center">
   <br><br>
-  ![Bandit Hunter Gameplay Demo](assets/gameplay-demo.gif) 
+  ![Bandit Hunter Gameplay Demo](./assets/gameplay-demo.gif) 
 </p>
 
 ---
